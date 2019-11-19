@@ -1,32 +1,31 @@
 import React from "react";
+import Form from "./Form"
 import { connect } from "react-redux";
-import { catNap, catEat, catPlay } from "../redux/activity";
+import { setActivity, setName } from "../redux/activity";
 
-const Activity = ({ activity, catNap, catEat, catPlay }) => {
+const Activity = ({ activity, setActivity, setName }) => {
     return (
-        <div>
-            <h1>Cat Reducer</h1>
-            <p>The cat is {activity}</p>
-            <ul>
-                <li><button onClick={() => catEat()}>Eating</button></li>
-                <li><button onClick={() => catNap()}>Napping</button></li>
-                <li><button onClick={() => catPlay()}>Playing</button></li>
-            </ul>
-        </div>
+        <>
+            <div>
+                <h1>Exercise 2</h1>
+                <p>The cat's name is {activity.name}.</p>
+                <p>Their current activity is {activity.activity}.</p>
+            </div>
+            <Form setActivity={setActivity} setName={setName} />
+        </>
     );
 };
 
 const mapStateToProps = state => {
-    const { activity } = state;
+    const activity = state;
     return activity;
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        catEat: () => dispatch(catEat()),
-        catNap: () => dispatch(catNap()),
-        catPlay: () => dispatch(catPlay())
-    }
+        setName: (name) => dispatch(setName(name)),
+        setActivity: (activity) => dispatch(setActivity(activity))
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Activity);
