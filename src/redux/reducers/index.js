@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import activityReducer from "./activityReducer"
+import catLadyReducer from "./catLadyReducer"
 
-export default combineReducers({activity: activityReducer});
+export default combineReducers({catLady: catLadyReducer});
