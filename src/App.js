@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import Activity from "./components/activity"
+import CatLadyComponent from "./components/CatLadyComponent";
 
 function App() {
-  return (
-    <div className="App">
-      <Activity/>
-    </div>
-  )
+    return (
+        <div className="App">
+            <CatLadyComponent />
+        </div>
+    );
 }
 
 export default App;

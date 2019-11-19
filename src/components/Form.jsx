@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-export default class Form extends Component {
+import { connect } from "react-redux";
+import { setActivity, setName } from "../redux/activity";
+class Form extends Component {
     state = {
         name: "",
         activity: ""
@@ -16,15 +17,15 @@ export default class Form extends Component {
     }
 
     handleSubmit(e) {
+        e.persist();
         e.preventDefault();
-        this.props.setName(this.state.name);
-        this.props.setActivity(this.state.activity);
+        this.props.setName(this.props.id, this.state.name);
+        this.props.setActivity(this.props.id, this.state.activity);
     }
 
     render() {
         return (
             <div>
-                <h2>Change the state!</h2>
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <label>
                         Name:
@@ -50,3 +51,12 @@ export default class Form extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setName: (id, name) => dispatch(setName(id, name)),
+        setActivity: (id, activity) => dispatch(setActivity(id, activity))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Form);

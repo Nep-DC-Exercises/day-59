@@ -24,7 +24,9 @@ const catLadyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cats: {
+                    ...state.cats,
                     [id]: {
+                        ...state.cats[id],
                         activity: activityValue
                     }
                 }
@@ -34,7 +36,12 @@ const catLadyReducer = (state = initialState, action) => {
             const { id, nameValue } = action.payload;
             return {
                 ...state,
-                name: nameValue
+                cats: {
+                    ...state.cats,
+                    [id]: {
+                        name: nameValue
+                    }
+                }
             };
         }
         case ACTION_ADD_CAT: {
