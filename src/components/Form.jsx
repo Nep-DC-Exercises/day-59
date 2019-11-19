@@ -17,8 +17,6 @@ export default class Form extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('this is the name from submitting', this.state.name)
-        console.log('this is the activity when submitting', this.state.activity)
         this.props.setName(this.state.name);
         this.props.setActivity(this.state.activity);
     }

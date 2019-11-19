@@ -9,8 +9,6 @@ const activityReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION_SET_ACTIVITY: {
             const { activityValue } = action.payload;
-            console.log("action set activity fired")
-
             return {
                 ...state,
                 activity: activityValue
@@ -18,8 +16,6 @@ const activityReducer = (state = initialState, action) => {
         }
         case ACTION_SET_NAME: {
             const { nameValue } = action.payload;
-            console.log("action set name fired")
-
             return {
                 ...state,
                 name: nameValue
