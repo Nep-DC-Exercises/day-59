@@ -15,9 +15,10 @@ export const setName = (id, nameValue) => ({
         nameValue
     }
 });
-export const addCat = catName => ({
+export const addCat = (catName, activityValue = "Meowing") => ({
     type: ACTION_ADD_CAT,
     payload: {
-        catName
+        catName,
+        activityValue
     }
 });

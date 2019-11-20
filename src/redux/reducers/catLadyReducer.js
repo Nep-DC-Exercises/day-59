@@ -4,6 +4,8 @@ import {
     ACTION_ADD_CAT
 } from "../actionTypes";
 
+import nextId from "react-id-generator"
+
 const initialState = {
     cats: {
         1001: {
@@ -16,6 +18,7 @@ const initialState = {
         }
     }
 };
+
 
 const catLadyReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -45,10 +48,17 @@ const catLadyReducer = (state = initialState, action) => {
             };
         }
         case ACTION_ADD_CAT: {
-            const { catName } = action.payload;
+            const { catName, activityValue } = action.payload;
+            let randomId = nextId();
             return {
                 ...state,
-                name: catName
+                cats: {
+                    ...state.cats,
+                    [randomId]: {
+                        name: catName,
+                        activity: activityValue
+                    }
+                }
             };
         }
         default: {

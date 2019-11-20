@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./Form";
 
-export default class Cat extends Component {
+class Cat extends Component {
     render() {
         const cat = this.props.cat;
         
@@ -9,8 +9,10 @@ export default class Cat extends Component {
             <>
                 <p>{cat.name}</p>
                 <p>{cat.activity}</p>
-                <Form id={this.props.id}/>
+                <Form id={this.props.id} data={cat}/>
             </>
         );
     }
 }
+
+export default Cat;

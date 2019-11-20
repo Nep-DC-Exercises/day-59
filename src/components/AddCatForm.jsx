@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setActivity, setName } from "../redux/activity";
-class Form extends Component {
+import { addCat } from "../redux/activity";
+
+class AddCatForm extends Component {
     state = {
-        name: this.props.data.name,
-        activity: this.props.data.activity
+        name: "Default Name",
+        activity: ""
     };
 
     handleInputChange(event) {
@@ -20,13 +21,19 @@ class Form extends Component {
         e.persist();
         e.preventDefault();
 
-        this.props.setName(this.props.id, this.state.name);
-        this.props.setActivity(this.props.id, this.state.activity);
+        const { name, activity } = this.state;
+        if (activity.length < 1) {
+            this.props.addCat(name, 'meowing');
+        } else {
+            this.props.addCat(name, activity);
+        }
+        
     }
 
     render() {
         return (
             <div>
+                <h3>Add a new cat!</h3>
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <label>
                         Name:
@@ -34,7 +41,7 @@ class Form extends Component {
                             type="text"
                             onChange={e => this.handleInputChange(e)}
                             name="name"
-                            placeholder="Change the name!"
+                            placeholder="Add the name of a new cat!"
                         />
                     </label>
                     <label>
@@ -43,7 +50,7 @@ class Form extends Component {
                             type="text"
                             onChange={event => this.handleInputChange(event)}
                             name="activity"
-                            placeholder="Change the activity!"
+                            placeholder="What's the activity gonna be?"
                         />
                     </label>
                     <input type="submit" value="Submit" />
@@ -55,9 +62,8 @@ class Form extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setName: (id, name) => dispatch(setName(id, name)),
-        setActivity: (id, activity) => dispatch(setActivity(id, activity))
+        addCat: (name, activity) => dispatch(addCat(name, activity))
     };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(AddCatForm);
